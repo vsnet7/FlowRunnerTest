@@ -1,0 +1,32 @@
+<html>
+	<script src="https://momentum-innovation-5275-dev-ed.scratch.my.salesforce.com/lightning/lightning.out.js">
+	</script>
+
+	<div data-lightning-out="true"></div>
+
+	<script>
+		const appName = "c:flowRunnerPoc";
+		const componentName="c:flowRunner";
+		const lightningEndpoint = "https://momentum-innovation-5275-dev-ed.scratch.my.salesforce.com";
+		const targetElement = document.querySelector("[data-lightning-out]");
+		const componentAttributes = {
+
+		};
+
+		$lightning.use(
+			appName,
+			function() {
+				$lightning.createComponent(
+					componentName,
+					componentAttributes,
+					targetElement,
+					function(cmp) {
+						console.log('created lightning (LWC) component');
+					}
+				);
+			},
+			lightningEndpoint
+		);
+
+	</script>
+</html>
