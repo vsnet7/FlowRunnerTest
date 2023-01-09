@@ -1,0 +1,33 @@
+<html>
+<script src="https://7slightningoutpoc-dev-ed.develop.my.site.com/lightning/lightning.out.js"></script>
+
+<body>
+<div data-lightning-out="true"></div>
+</body>
+
+<script>
+	const appName = "c:flowRunnerPoc";
+	const componentName = "c:flowRunner";
+	const flowName = 'hello_world';
+	const lightningEndpoint = "https://7slightningoutpoc-dev-ed.develop.my.site.com";
+	const targetElement = document.querySelector("[data-lightning-out]");
+	const componentAttributes = {
+		flowApiName: flowName
+	};
+
+	$Lightning.use(
+		appName,
+		function () {
+			$Lightning.createComponent(
+				componentName,
+				componentAttributes,
+				targetElement,
+				function (cmp) {
+					console.log("created lightning (LWC) component");
+				}
+			);
+		},
+		lightningEndpoint
+	);
+</script>
+</html>
