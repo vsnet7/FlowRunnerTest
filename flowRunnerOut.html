@@ -5,19 +5,40 @@
 
 <body>
 <div data-lightning-out="true"></div>
-<div class="g-recaptcha" data-sitekey="6LdZ8g8kAAAAAJid4RyxBoDE-uxOEnHYVr_QHu96"></div>
+<div class="g-recaptcha" data-sitekey="6LdZ8g8kAAAAAJid4RyxBoDE-uxOEnHYVr_QHu96" data-callback="enableButton"></div>
+<input type="submit" name="submit" id="salesforcebutton" disabled="disabled" onclick="startFlow()">
+
 </body>
 
 <script>
+
 	const appName = "c:flowRunnerPoc";
 	const componentName = "c:flowRunner";
-	const flowName = "hello_world";
+	const flowName = "create_case_with_related_file";
 	const lightningEndpoint =
 		"https://7slightningoutpoc-dev-ed.develop.my.site.com";
 	const targetElement = document.querySelector("[data-lightning-out]");
 	const componentAttributes = {
 		flowApiName: flowName
+
 	};
+
+	function startFlow() {
+		$Lightning.use(
+			appName,
+			function () {
+				$Lightning.createComponent(
+					componentName,
+					componentAttributes,
+					targetElement,
+					function (cmp) {
+						console.log("created lightning (LWC) component");
+					}
+				);
+			},
+			lightningEndpoint
+		);
+	}
 
 	function timestamp() {
 		var response = document.getElementById("g-recaptcha-response");
@@ -30,21 +51,9 @@
 
 	setInterval(timestamp, 500);
 
-	$Lightning.use(
-		appName,
-		function () {
-			$Lightning.createComponent(
-				componentName,
-				componentAttributes,
-				targetElement,
-				function (cmp) {
-					console.log("created lightning (LWC) component");
-				}
-			);
-		},
-		lightningEndpoint
-	);
-	
+	function enableButton(){
+		document.getElementById("salesforcebutton").disabled = false;
+	}
 
 </script>
 </html>
