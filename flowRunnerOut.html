@@ -1,20 +1,18 @@
 <html>
 <script src="https://7slightningoutpoc-dev-ed.develop.my.site.com/lightning/lightning.out.js"></script>
-<script src="https://wwww.google.com/recapcha/api.js"></script>
-
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
 
 <body>
 <div data-lightning-out="true"></div>
 <div class="g-recaptcha" data-sitekey="6LdZ8g8kAAAAAJid4RyxBoDE-uxOEnHYVr_QHu96" data-callback="enableButton"></div>
-<input type="submit" name="submit" id="salesforcebutton" onclick="startFlow()">
-
+<input type="submit" name="submit" id="salesforcebutton" disabled="disabled" onclick="startFlow()">
 </body>
 
 <script>
 
 	const appName = "c:flowRunnerPoc";
 	const componentName = "c:flowRunner";
-	const flowName = "case_create_with_related_file";
+	const flowName = "create_case_with_related_file";
 	const lightningEndpoint =
 		"https://7slightningoutpoc-dev-ed.develop.my.site.com";
 	const targetElement = document.querySelector("[data-lightning-out]");
@@ -41,9 +39,10 @@
 	}
 
 	function timestamp() {
-		var response = document.getElementById("g-recaptcha-response");
+		let response = document.getElementById("g-recaptcha-response");
+
 		if (response == null || response.value.trim() == "") {
-			var elems = JSON.parse(document.getElementsByName("captcha_settings")[0].value);
+			let elems = JSON.parse(document.getElementsByName("captcha_settings")[0].value);
 			elems["ts"] = JSON.stringify(new Date().getTime());
 			document.getElementsByName("captcha_settings")[0].value = JSON.stringify(elems);
 		}
@@ -54,6 +53,10 @@
 	function enableButton(){
 		document.getElementById("salesforcebutton").disabled = false;
 	}
+
+	let onloadCallback = function() {
+		alert("grecaptcha is ready!");
+	};
 
 </script>
 </html>
