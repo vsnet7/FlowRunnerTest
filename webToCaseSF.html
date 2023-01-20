@@ -59,8 +59,13 @@
 
 	<input type="hidden" id="external" name="external" value="1"/><br>
 
-	<div class="g-recaptcha" data-sitekey="6LdZ8g8kAAAAAJid4RyxBoDE-uxOEnHYVr_QHu96"></div>
+	<div class="g-recaptcha" data-sitekey="6LdZ8g8kAAAAAJid4RyxBoDE-uxOEnHYVr_QHu96" data-callback="enableButton"></div>
 	<br>
-	<input type="submit" name="submit">
-
+	<input type="submit" name="submit" id="salesforcebutton" disabled="disabled">
+	
+	<script>
+		function enableButton(){
+			document.getElementById("salesforcebutton").disabled = false;
+		}
+	</script>
 </form>
