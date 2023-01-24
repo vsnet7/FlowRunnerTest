@@ -5,8 +5,8 @@
 <body>
 <div id="html_element"></div><br>
 <div data-lightning-out="true"></div>
-<div class="g-recaptcha" data-sitekey="6LdZ8g8kAAAAAJid4RyxBoDE-uxOEnHYVr_QHu96" data-callback="enableButton"></div>
-<input type="submit" name="submit" id="salesforcebutton"  onclick="startFlow()">
+<div class="g-recaptcha" data-sitekey="6LdEsR4kAAAAAByq-RYNBm_31KeENHSm_VCID1TG" data-callback="enableButton"></div>
+<input type="submit" name="submit" id="salesforcebutton" disabled="disabled" onclick="startFlow()">
 </body>
 
 <script>
@@ -58,7 +58,7 @@
 	let onloadCallback = function() {
 		alert("grecaptcha is ready!");
 		grecaptcha.render('html_element', {
-			'sitekey' : '6LdZ8g8kAAAAAJid4RyxBoDE-uxOEnHYVr_QHu96'
+			'sitekey' : '6LdEsR4kAAAAAByq-RYNBm_31KeENHSm_VCID1TG'
 		});
 	};
 
