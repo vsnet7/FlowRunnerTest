@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <script src="https://ibmwebtocase-dev-ed.develop.my.site.com/lightning/lightning.out.js"></script>
+<script src="https://ibmwebtocase-dev-ed.develop.my.site.com/lightning/lightning.out.js"></script>
 
-  <body>
-    <div data-lightning-out="true"></div>
-  </body>
+<body>
+<div data-lightning-out="true"></div>
+</body>
 
-  <script>
-    const appName = "c:flowRunnerPoc";
-    const componentName = "c:flowRunner";
-    const flowName = "create_case_with_related_file";
-    const lightningEndpoint =
-      "https://ibmwebtocase-dev-ed.develop.my.site.com";
-    const targetElement = document.querySelector("[data-lightning-out]");
-    const componentAttributes = {
-      flowApiName: flowName
-    };
+<script>
+	const appName = "c:ibmWebToCaseApp";
+	const componentName = "c:ibmWebToCaseFlow";
+	const flowName = "Create_Case_With_File_Upload";
+	const bannerText = 'Create a new Case (Hosted on GitHub)';
+	const lightningEndpoint =
+		"https://ibmwebtocase-dev-ed.develop.my.site.com";
+	const targetElement = document.querySelector("[data-lightning-out]");
+	const componentAttributes = {
+		flowApiName: flowName,
+		flowBannerText: bannerText
+	};
 
-    $Lightning.use(
-      appName,
-      function () {
-        $Lightning.createComponent(
-          componentName,
-          componentAttributes,
-          targetElement,
-          function (cmp) {
-            console.log("created lightning (LWC) component");
-          }
-        );
-      },
-      lightningEndpoint
-    );
-  </script>
+	$Lightning.use(
+		appName,
+		function () {
+			$Lightning.createComponent(
+				componentName,
+				componentAttributes,
+				targetElement,
+				function (cmp) {
+					console.log("created lightning (LWC) component");
+				}
+			);
+		},
+		lightningEndpoint
+	);
+</script>
 </html>
