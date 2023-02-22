@@ -13,10 +13,12 @@
 	const bannerAlign = 'Center';   // Left, Center, Right
 	const behaviour = 'None';       // None or Restart
 	const returnUrl = '';
-	const runFlow = true;
+	const showCaptcha = true;
+	const runFlow = false;
 	const defaultAccount = '';
 
 	const componentAttributes = {
+		showCaptcha : showCaptcha,
 		flowApiName: flowName,
 		flowBannerText: bannerText,
 		flowBannerAlign : bannerAlign,
