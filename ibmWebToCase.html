@@ -3,21 +3,33 @@
 <script src="https://ibmwebtocase-dev-ed.develop.my.site.com/lightning/lightning.out.js"></script>
 
 <body>
-<div data-lightning-out="true"></div>
+	<div data-lightning-out="true"></div>
 </body>
 
 <script>
-	const appName = "c:ibmWebToCaseApp";
-	const componentName = "c:ibmWebToCaseFlow";
+	// component configuration properties
 	const flowName = "Create_Case_With_File_Upload";
-	const bannerText = 'Create a new Case (Now hosted on GitHub)';
-	const lightningEndpoint =
-		"https://ibmwebtocase-dev-ed.develop.my.site.com";
-	const targetElement = document.querySelector("[data-lightning-out]");
+	const bannerText = 'Create a new Case';
+	const bannerAlign = 'Center';   // Left, Center, Right
+	const behaviour = 'None';       // None or Restart
+	const returnUrl = '';
+	const runFlow = false;
+	const defaultAccount = '';
+
 	const componentAttributes = {
 		flowApiName: flowName,
-		flowBannerText: bannerText
+		flowBannerText: bannerText,
+		flowBannerAlign : bannerAlign,
+		flowBehavior: behaviour,
+		flowReturnUrl: returnUrl,
+		runFlow: runFlow,
+		defaultAccount: defaultAccount
 	};
+
+	const appName = "c:ibmWebToCaseApp";
+	const componentName = "c:ibmWebToCaseFlow";
+	const lightningEndpoint = "https://ibmwebtocase-dev-ed.develop.my.site.com";
+	const targetElement = document.querySelector("[data-lightning-out]");
 
 	$Lightning.use(
 		appName,
