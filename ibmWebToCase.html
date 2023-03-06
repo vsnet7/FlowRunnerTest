@@ -10,9 +10,10 @@
 	// component configuration properties
 	const returnUrl = 'https://www.google.com';     // redirect to this URL on flow completion
 	const showCaptcha = true;       		// show Google reCAPTCHA
-	const confirmFlowStart = false;           	// set to false run flow immediately 
+	const confirmFlowStart = true;           	// set to false run flow immediately 
 
 	const componentAttributes = {
+		confirmFlowStart: confirmFlowStart,
 		flowReturnUrl: returnUrl,
 		originUrl: window.location.href
 	};
