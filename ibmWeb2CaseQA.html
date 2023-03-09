@@ -25,16 +25,18 @@
 </body>
 
 <script>
-	// component configuration properties - add to componentAttributes object to override default values
-	const flowName = "";            // optional flow name - default: IBM_Web_To_Case
-	const bannerText = '';          // optional banner
-	const bannerAlign = '';         // Left, Center, Right
-	const behaviour = 'NONE';       // None (with optional redirect) or Restart the flow
-	const returnUrl = '';           // redirect to this URL on flow completion
-	const showCaptcha = true;       // show Google reCAPTCHA
-	const confirmFlowStart = false; // run flow immediately if false, otherwise show the start button
-	const defaultAccount = '';      // Default Account Id
-	const urlProperties = ['flowApiName', 'flowBannerText', 'flowBannerAlign', 'flowBehavior', 'flowReturnUrl', 'showCaptcha', 'confirmFlowStart', 'defaultAccount'];
+	// component configuration properties - add to the URL as parameters to override default values
+	const urlProperties = [
+		'flowApiName',
+		'flowBannerText',
+		'flowBannerAlign',
+		'flowBehavior',
+		'flowReturnUrl',
+		'showCaptcha',
+		'confirmFlowStart',
+		'defaultAccount',
+		'customClass'
+	];
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
 
