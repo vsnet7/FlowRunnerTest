@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,20 +14,36 @@
 </body>
 
 <script>
-	// component configuration properties
-	const returnUrl = 'https://www.google.com';     // redirect to this URL on flow completion
-	const showCaptcha = true;       		// show Google reCAPTCHA
-	const confirmFlowStart = true;           	// set to false run flow immediately 
+	// component configuration properties - add to the URL as parameters to override default values
+	const urlProperties = [
+		'flowApiName',
+		'flowBannerText',
+		'flowBannerAlign',
+		'flowBehavior',
+		'flowReturnUrl',
+		'showCaptcha',
+		'confirmFlowStart',
+		'defaultAccount',
+		'customClass'
+	];
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
 
+	// use originUrl to track the invocation if this product is used in multiple web sites
 	const componentAttributes = {
-		showCaptcha: showCaptcha,
-		confirmFlowStart: confirmFlowStart,
-		flowReturnUrl: returnUrl,
 		originUrl: window.location.href
 	};
 
+	urlProperties.forEach(entry => {
+		if (urlParams.has(entry)) {
+			componentAttributes[entry] = urlParams.get(entry);
+		}
+	});
+
+	// required to launch the correct application
 	const appName = "c:ibmWebToCaseApp";
 	const componentName = "c:ibmWebToCaseFlow";
+	// configure to match your SFDC experience end point
 	const lightningEndpoint = "https://ibmwebtocase-dev-ed.develop.my.site.com";
 	const targetElement = document.querySelector("[data-lightning-out]");
 
