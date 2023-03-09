@@ -11,7 +11,7 @@
     = The component configuration properties can be changed to invoke a specific flow,
 -->
 
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<title>IBM Web To Case Pro QA</title>
@@ -34,20 +34,18 @@
 	const showCaptcha = true;       // show Google reCAPTCHA
 	const confirmFlowStart = false; // run flow immediately if false, otherwise show the start button
 	const defaultAccount = '';      // Default Account Id
-
+	const urlProperties = ['bannerText', 'bannerAlign', 'behavior', 'returnUrl', 'showCaptcha', 'confirmFlowStart', 'defaultAccount'];
+	const queryString = window.location.search;
+	
 	// use originUrl to track the invocation if this product is used in multiple web sites
 	const componentAttributes = {
 		originUrl: window.location.href
 	};
-
-	const urlProperties = ['bannerText', 'bannerAlign', 'behavior', 'returnUrl', 'showCaptcha', 'confirmFlowStart', 'defaultAccount'];
-	const queryString = window.location.search;
+	
 	const urlParams = new URLSearchParams(queryString);
-
 	urlProperties.forEach(entry => {
-		let entryValue = urlParams.get(entry);
-		if (entry) {
-			componentAttributes[entry] = entryValue;
+		if (urlParams.has(entry)) {
+			componentAttributes[entry] = urlParams.get(entry);
 		}
 	});
 
