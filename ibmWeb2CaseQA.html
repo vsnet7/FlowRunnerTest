@@ -11,11 +11,13 @@
     = The component configuration properties can be changed to invoke a specific flow,
 -->
 
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
-<head>
-	<title>IBM Web To Case Pro</title>
-</head>
+	<head>
+		<title>IBM Web To Case Pro QA</title>
+		<link rel="preconnect" href="https://www.google.com">
+		<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+	</head>
 <script src="https://7sproductqa-dev-ed.my.site.com/lightning/lightning.out.js"></script>
 
 <body>
@@ -35,9 +37,19 @@
 
 	// use originUrl to track the invocation if this product is used in multiple web sites
 	const componentAttributes = {
-		showCaptcha : showCaptcha,
 		originUrl: window.location.href
 	};
+
+	const urlProperties = ['bannerText', 'bannerAlign', 'behavior', 'returnUrl', 'showCaptcha', 'confirmFlowStart', 'defaultAccount'];
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+
+	urlProperties.forEach(entry => {
+		let entryValue = urlParams.get(entry);
+		if (entry) {
+			componentAttributes[entry] = entryValue;
+		}
+	});
 
 	// required to launch the correct application
 	const appName = "c:ibmWebToCaseApp";
