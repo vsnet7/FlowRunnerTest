@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>IBM Web To Case Pro</title>
+	<link rel="preconnect" href="https://www.google.com">
+	<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+</head>
+
+<script src="https://7s-uat-dev-ed.my.site.com/lightning/lightning.out.js"></script>
+
+<body>
+	<div data-lightning-out="true"></div>
+</body>
+
+<script>
+	// component configuration properties - add to the URL as parameters to override default values
+	const urlProperties = [
+		'flowApiName',
+		'flowBannerText',
+		'flowBannerAlign',
+		'flowBehavior',
+		'flowReturnUrl',
+		'showCaptcha',
+		'confirmFlowStart',
+		'defaultAccount',
+		'defaultSource',
+		'defaultStatus',
+		'flowAssignment',
+		'customClass'
+	];
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+
+	// use originUrl to track the invocation if this product is used in multiple web sites
+	const componentAttributes = {
+		originUrl: window.location.href,
+		flowApiName: 'IBM_Web_To_Lead_Pro',
+		defaultStatus: 'Open - Not Contacted'
+	};
+
+	urlProperties.forEach(entry => {
+		if (urlParams.has(entry)) {
+			componentAttributes[entry] = urlParams.get(entry);
+		}
+	});
+
+	// required to launch the correct application
+	const appName = "c:ibmWebToCaseApp";
+	const componentName = "c:ibmWebToCaseFlow";
+	// configure to match your SFDC experience end point
+	const lightningEndpoint = "https://7s-uat-dev-ed.my.site.com";
+	const targetElement = document.querySelector("[data-lightning-out]");
+
+	$Lightning.use(
+		appName,
+		function () {
+			$Lightning.createComponent(
+				componentName,
+				componentAttributes,
+				targetElement,
+				function (cmp) {
+					console.info("created lightning (LWC) component");
+				}
+			);
+		},
+		lightningEndpoint
+	);
+</script>
+</html>
