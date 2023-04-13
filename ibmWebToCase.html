@@ -34,7 +34,10 @@
 
 	// use originUrl to track the invocation if this product is used in multiple web sites
 	const componentAttributes = {
-		originUrl: window.location.href
+		originUrl: window.location.href,
+		defaultSource: 'Web',
+		defaultStatus: 'New',
+		flowAssignment: true
 	};
 
 	urlProperties.forEach(entry => {
