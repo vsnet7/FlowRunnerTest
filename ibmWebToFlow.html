@@ -1,0 +1,72 @@
+<!-- IBM Web To Flow
+	Sample WEB to Flow html page to embed or add to a website external to Salesforce.
+    The component configuration properties can be changed to invoke a specific flow,
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>IBM Web To Case Pro</title>
+	<link rel="preconnect" href="https://www.google.com">
+	<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+</head>
+
+<script src="https://ibmwebtocase-dev-ed.develop.my.site.com/lightning/lightning.out.js"></script>
+
+<body>
+	<div data-lightning-out="true"></div>
+</body>
+
+<script>
+	// component configuration properties - add to the URL as parameters to override default values
+	const urlProperties = [
+		'flowApiName',
+		'flowBannerText',
+		'flowBannerAlign',
+		'flowBehavior',
+		'flowReturnUrl',
+		'showCaptcha',
+		'confirmFlowStart',
+		'defaultAccount',
+		'defaultSource',
+		'defaultStatus',
+		'flowAssignment',
+		'customClass'
+	];
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+
+	// use originUrl to track the invocation if this product is used in multiple web sites
+	const componentAttributes = {
+        flowApiName: 'IBM_Web_To_Flow',
+	};
+
+	urlProperties.forEach(entry => {
+		if (urlParams.has(entry)) {
+			componentAttributes[entry] = urlParams.get(entry);
+		}
+	});
+
+	// required to launch the correct application
+	const appName = "c:ibmWebToFlowApp";
+	const componentName = "c:ibmWebToFlow";
+	// configure to match your SFDC experience end point
+	const lightningEndpoint = "https://ibmwebtocase-dev-ed.develop.my.site.com";
+	const targetElement = document.querySelector("[data-lightning-out]");
+
+	$Lightning.use(
+		appName,
+		function () {
+			$Lightning.createComponent(
+				componentName,
+				componentAttributes,
+				targetElement,
+				function (cmp) {
+					console.info("created lightning (LWC) component");
+				}
+			);
+		},
+		lightningEndpoint
+	);
+</script>
+</html>
